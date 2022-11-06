@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sheep.mapper.SheepMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.sheep.Domain.Sheep">
+            <result property="sheep_name" column="sheep_name" jdbcType="VARCHAR"/>
+            <result property="binary" column="binary" jdbcType="VARCHAR"/>
+            <result property="growUp" column="grow_up" jdbcType="INTEGER"/>
+            <result property="growSpeed" column="grow_speed" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sheep_name,binary,grow_up,
+        grow_speed
+    </sql>
+    <insert id="insertSelective">
+        insert into `Group`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sheep_name != null">sheep_name,</if>
+            <if test="binary != null">`binary`,</if>
+            <if test="growUp != null">grow_up,</if>
+            <if test="growSpeed != null">grow_speed,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sheep_name != null">#{sheep_name,jdbcType=VARCHAR},</if>
+            <if test="`binary` != null">#{binary,jdbcType=VARCHAR},</if>
+            <if test="growUp != null">#{growUp,jdbcType=INTEGER},</if>
+            <if test="growSpeed != null">#{growSpeed,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+
+</mapper>
